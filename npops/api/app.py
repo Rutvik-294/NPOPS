@@ -210,7 +210,7 @@ def create_app(db_path: str, secret_path: str | None = None) -> App:
         cmap = {}
         if city_ids:
             marks = ",".join("?" for _ in city_ids)
-            cmap = {c["id"]: c for c in
+            cmap = {c.id: c for c in
                     City.all(f"id IN ({marks})", tuple(city_ids))}
         out = []
         for c in rows:

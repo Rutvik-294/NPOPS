@@ -206,6 +206,8 @@ label { font-size: 12px; color: var(--text-dim); display: block; margin-bottom: 
 @media (prefers-reduced-motion: reduce) { .toast { animation: none; } .track-fill { transition: none; } }
 
 /* ---------- misc ---------- */
+body.logged-out .sidebar { display: none; }
+body.logged-out .icon-btn { visibility: hidden; }
 .empty { color: var(--text-faint); font-size: 13px; padding: 24px; text-align: center; }
 .section-h { font: 600 15px var(--font-display); margin: 22px 0 10px; }
 .muted { color: var(--text-dim); }

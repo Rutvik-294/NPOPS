@@ -102,9 +102,11 @@ function worldMap(cities, routes, currentPos) {
 // ---------- views ----------
 const views = {};
 
+// login renders inside the shell; sidebar hidden via body class
 views.login = async () => {
-  const app = $("#app");
-  app.innerHTML = `<div class="login-wrap"><div class="login-card card">
+  document.body.classList.add("logged-out");
+  const view = $("#view");
+  view.innerHTML = `<div class="login-wrap"><div class="login-card card">
     <div class="brand">
       <svg class="brand-mark" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" class="brand-ring"/><path d="M16 6 L20 16 L16 26 L12 16 Z" class="brand-star"/><line x1="5" y1="16" x2="27" y2="16" class="brand-axis"/></svg>
       <div><div class="brand-name">NPOPS</div><div class="brand-sub">North Pole Operations</div></div>
@@ -124,6 +126,7 @@ views.login = async () => {
         username: $("#f-user").value, password: $("#f-pass").value }) });
       state.user = me.user;
       await loadMe();
+      document.body.classList.remove("logged-out");
       bootShell();
       location.hash = "#/dashboard";
     } catch (err) {
@@ -476,7 +479,7 @@ views.admin = async () => {
 };
 
 // map hash names to view fns
-views.route_planner = views.route_planner; // defined above
+views.routes = views.route_planner;
 views.live_tracking = views.tracking;
 views.mrp = views.production;
 
@@ -489,5 +492,8 @@ views.mrp = views.production;
   } catch {
     views.login();
   }
-  $("#nav-toggle").onclick = () => $("#sidebar").classList.toggle("open");
+  $("#nav-toggle").onclick = () => {
+    const sb = $("#sidebar");
+    if (sb) sb.classList.toggle("open");
+  };
 })();
