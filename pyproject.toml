@@ -1,0 +1,9 @@
+[project]
+name = "npops"
+version = "1.0.0"
+description = "North Pole Operations Platform — enterprise logistics SaaS for Santa's Workshop"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+npops = "npops.api.app:main"
